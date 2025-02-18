@@ -74,9 +74,9 @@ const char DIR_Y[4] = { 0, 1, 0, -1 };
 
 void init_game() {
   memset(players, 0, sizeof(players));
-  players[0].head_attr = CHAR('1');
+  players[0].head_attr = CHAR('O');
   
-  players[0].tail_attr = CHAR('@');
+  players[0].tail_attr = CHAR('=');
   
   frames_per_move = START_SPEED;
 }
@@ -114,33 +114,6 @@ void human_control(Player* p) {
     p->dir = dir;
   }
 }
-
-/*byte ai_try_dir(Player* p, dir_t dir, byte shift) {
-  byte x,y;
-  dir &= 3;
-  x = p->x + (DIR_X[dir] << shift);
-  y = p->y + (DIR_Y[dir] << shift);
-  if (x < 29 && y < 27 && getcharxy(x, y) == 0) {
-    p->dir = dir;
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
-void ai_control(Player* p) {
-  dir_t dir;
-  if (p->human) return;
-  dir = p->dir;
-  if (!ai_try_dir(p, dir, 0)) {
-    ai_try_dir(p, dir+1, 0);
-    ai_try_dir(p, dir-1, 0);
-  } else {
-    ai_try_dir(p, dir-1, 0) && ai_try_dir(p, dir-1, 1+(rand() & 3));
-    ai_try_dir(p, dir+1, 0) && ai_try_dir(p, dir+1, 1+(rand() & 3));
-    ai_try_dir(p, dir, rand() & 3);
-  }
-}*/
 
 byte gameover;
 
@@ -182,8 +155,8 @@ void declare_winner(byte winner) {
     draw_box(i,i,COLS-1-i,ROWS-1-i,BOX_CHARS);
     delay(1);
   }
-  putstringxy(12,10,"WINNER:");
-  putstringxy(12,13,"PLAYER ");
+  putstringxy(12,10,"Score:");
+  putcharxy(12+7, 13, players[0].score);  
   putcharxy(12+7, 13, CHAR('1')+winner);
   delay(75);
   gameover = 1;
