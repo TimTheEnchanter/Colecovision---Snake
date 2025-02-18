@@ -20,6 +20,7 @@ typedef struct {
   byte x;
   byte y;
   byte dir;
+  byte tail;
   word score;
   char head_attr;
   char tail_attr;
@@ -29,6 +30,7 @@ typedef struct {
 
 Player players[1];
 
+byte length = 0;
 byte credits = 0;
 byte frames_per_move;
 
@@ -113,7 +115,7 @@ void human_control(Player* p) {
   }
 }
 
-byte ai_try_dir(Player* p, dir_t dir, byte shift) {
+/*byte ai_try_dir(Player* p, dir_t dir, byte shift) {
   byte x,y;
   dir &= 3;
   x = p->x + (DIR_X[dir] << shift);
@@ -138,7 +140,7 @@ void ai_control(Player* p) {
     ai_try_dir(p, dir+1, 0) && ai_try_dir(p, dir+1, 1+(rand() & 3));
     ai_try_dir(p, dir, rand() & 3);
   }
-}
+}*/
 
 byte gameover;
 
@@ -163,8 +165,9 @@ void make_move() {
     human_control(&players[0]);
     delay(1);
   }
-  ai_control(&players[0]);
+  //ai_control(&players[0]);
   
+  players[0].tail = i;
   // if players collide, 2nd player gets the point
   
   move_player(&players[0]);
