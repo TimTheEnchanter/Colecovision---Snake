@@ -37,6 +37,7 @@ typedef struct {
 } Apple;
 
 Player players[1];
+Apple apples[];
 
 byte length = 0;
 byte credits = 0;
@@ -175,12 +176,25 @@ void declare_winner(byte winner) {
 }
 
 void play_round() {
+  byte i = 0;
+  byte count = 1;
   reset_players();
   clrscr();
   draw_playfield();
   while (1) {
     make_move();
     
+	if( count%10 == 0)
+	{
+		apples[i].x = ;
+		apples[i].y = ;
+		apples[i].obj_attr = CHAR('+');
+		
+		
+		i++;
+	}
+	
+	count++;
   }
   flash_colliders();
   // add scores to players that didn't collide
