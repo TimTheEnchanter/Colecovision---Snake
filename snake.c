@@ -28,6 +28,14 @@ typedef struct {
   char human:1;
 } Player;
 
+typedef struct {
+  byte x;
+  byte y;
+  char obj_attr;
+  char collided:1;
+  
+} Apple;
+
 Player players[1];
 
 byte length = 0;
@@ -66,6 +74,10 @@ void draw_playfield() {
   
   putcharxy(7,0,CHAR(players[0].score+'0'));
   
+}
+
+void place_apple(Apple* a) {
+	putcharxy(a->x, a->y, a->obj_attr);
 }
 
 typedef enum { D_RIGHT, D_DOWN, D_LEFT, D_UP } dir_t;
