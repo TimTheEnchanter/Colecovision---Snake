@@ -186,10 +186,11 @@ void play_round() {
     
 	if( count%10 == 0)
 	{
-		apples[i].x = ;
-		apples[i].y = ;
+		apples[i].x = rand() % ((COLS-1) - 0 + 1);
+		apples[i].y = rand() % ((ROWS-1) - 0 + 1);
 		apples[i].obj_attr = CHAR('+');
 		
+		place_apple(apples[i]);	
 		
 		i++;
 	}
