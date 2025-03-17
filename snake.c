@@ -111,6 +111,7 @@ void move_player(Player* p) {
   if (getcharxy(p->x, p->y) != 0)
 	if (getcharxy(p->x, p->y) == '+')
 		players[0].score += 1;
+		putcharxy(p->x, p->y, '');
     p->collided = 1;
   draw_player(p);
 }
@@ -155,7 +156,7 @@ void make_move() {
   }
   //ai_control(&players[0]);
   
-  players[0].tail = i;
+  //players[0].tail = i;
   // if players collide, 2nd player gets the point
   
   move_player(&players[0]);
