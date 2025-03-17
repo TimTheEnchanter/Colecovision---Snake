@@ -109,6 +109,8 @@ void move_player(Player* p) {
   p->x += DIR_X[p->dir];
   p->y += DIR_Y[p->dir];
   if (getcharxy(p->x, p->y) != 0)
+	if (getcharxy(p->x, p->y) == '+')
+		players[0].score += 1;
     p->collided = 1;
   draw_player(p);
 }
